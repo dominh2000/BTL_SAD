@@ -9,7 +9,7 @@ Hiện tại đã có các chức năng:
 5. Thêm điện thoại: http://127.0.0.1:8000/mobilephone/addPhone
 6. Thêm laptop: http://127.0.0.1:8000/laptop/addLaptop
 
-Đăng nhập SQLite:
+Đăng nhập SQLite: http://127.0.0.1:8000/admin
 1. Username: dominh
 2. Password: Hello123!
 
