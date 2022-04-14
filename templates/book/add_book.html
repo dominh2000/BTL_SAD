@@ -1,0 +1,137 @@
+{% extends 'book/base.html' %}
+
+{% block titleblock %}
+    <title>Thêm sách</title>
+{% endblock %}
+
+{% block cssblock %}
+    <link href="https://fonts.googleapis.com/css?family=Cabin:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="pd-wrap">
+        <div class="container">
+            <div class="heading-section">
+                <h2>Thêm sách</h2>
+            </div>
+            <div class="product-info-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                           aria-controls="description" aria-selected="true">Mô tả</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                     aria-labelledby="description-tab">
+                    <table class="table table-hover table-light">
+                        <tbody>
+                        <form action="{% url 'book:add_book' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Thông tin chung</th>
+                            </tr>
+                            <tr>
+                                <th>Tựa đề</th>
+                                <td colspan="2">{{ book_form.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>ISBN:</th>
+                                <td colspan="2">{{ book_form.isbn }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ấn bản thứ:</th>
+                                <td colspan="2">{{ book_form.edition }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tác giả:</th>
+                                <td>{{ book_form.authors }}</td>
+                                <td><a class="btn btn-success" href="{% url 'book:add_author' %}" role="button">Thêm tác
+                                    giả</a></td>
+                            </tr>
+                            <tr>
+                                <th>Giá gốc:</th>
+                                <td colspan="2">{{ book_form.price }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mô tả nội dung:</th>
+                                <td colspan="2">{{ book_form.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thể loại:</th>
+                                <td>{{ book_form.category }}</td>
+                                <td><a class="btn btn-success" href="{% url 'book:add_category' %}" role="button">Thêm
+                                    thể
+                                    loại</a></td>
+                            </tr>
+                            <tr>
+                                <th>Nhà xuất bản:</th>
+                                <td>{{ book_form.publisher }}</td>
+                                <td><a class="btn btn-success" href="{% url 'book:add_publisher' %}" role="button">Thêm
+                                    NXB</a></td>
+                            </tr>
+                            <tr>
+                                <th>Ngày xuất bản:</th>
+                                <td colspan="2">{{ book_form.publicationDate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số trang:</th>
+                                <td colspan="2">{{ book_form.numOfPages }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ngôn ngữ:</th>
+                                <td colspan="2">{{ book_form.language }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mô tả vật lý:<br>(Dài x Rộng x Cao)</th>
+                                <td colspan="2">{{ book_form.dimensions }}</td>
+                            </tr>
+                            <tr>
+                                <th>Khối lượng:</th>
+                                <td colspan="2">{{ book_form.weight }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Ảnh (tối đa 10 ảnh)</th>
+                            </tr>
+                            {{ image_form.management_form }}
+                            {% for img_form in image_form %}
+                                <tr>
+                                    <th>Ảnh:</th>
+                                    <td colspan="2">
+                                        {{ img_form.src }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            <tr>
+                                <th></th>
+                                <td colspan="2"><input type="submit" value="Lưu" class="btn btn-danger"></td>
+                            </tr>
+                        </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block jsblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+{% endblock %}

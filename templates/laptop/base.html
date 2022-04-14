@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block titleblock %}
+    {% endblock %}
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" href="{% static 'product/images/online-shopping-icon_by_iconixar.png' %}">
+    <link rel="stylesheet" href="{% static 'product/styles/product_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'product/styles/Bootstrap 5/bootstrap.min.css' %}" id="bootstrap-css">
+    <script src="{% static 'product/styles/Bootstrap 5/bootstrap.min.js' %}"></script>
+    <script src="{% static 'product/js/product.js' %}"></script>
+    {% block cssblock %}
+    {% endblock %}
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}
+</body>
+
+</html>

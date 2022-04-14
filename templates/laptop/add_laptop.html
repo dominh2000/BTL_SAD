@@ -1,0 +1,260 @@
+{% extends 'laptop/base.html' %}
+
+{% block titleblock %}
+    <title>Thêm laptop</title>
+{% endblock %}
+
+{% block cssblock %}
+    <link href="https://fonts.googleapis.com/css?family=Cabin:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="pd-wrap">
+        <div class="container">
+            <div class="heading-section">
+                <h2>Thêm laptop</h2>
+            </div>
+            <div class="product-info-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                           aria-controls="description" aria-selected="true">Mô tả</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                     aria-labelledby="description-tab">
+                    <table class="table table-hover table-light">
+                        <tbody>
+                        <form action="{% url 'laptop:add_laptop' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Thông tin chung</th>
+                            </tr>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <td colspan="2">{{ laptop_form.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà sản xuất</th>
+                                <td colspan="2">{{ laptop_form.manufacturer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Giá</th>
+                                <td colspan="2">{{ laptop_form.price }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thời điểm ra mắt</th>
+                                <td colspan="2">{{ laptop_form.releaseDate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mô tả</th>
+                                <td colspan="2">{{ laptop_form.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hệ điều hành</th>
+                                <td colspan="2">{{ laptop_form.os }}</td>
+                            </tr>
+                            <tr>
+                                <th>Phần mềm cài đặt sẵn</th>
+                                <td colspan="2">{{ laptop_form.bundledSoftwares }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thông tin pin</th>
+                                <td colspan="2">{{ laptop_form.batteryCapacity }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Bộ xử lý</th>
+                            </tr>
+                            <tr>
+                                <th>Tên mã CPU</th>
+                                <td colspan="2">{{ cpu_form.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Họ CPU</th>
+                                <td colspan="2">{{ cpu_form.family }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà sản xuất</th>
+                                <td colspan="2">{{ cpu_form.manufacturer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số nhân</th>
+                                <td colspan="2">{{ cpu_form.cores }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số luồng</th>
+                                <td colspan="2">{{ cpu_form.threads }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số cơ sở</th>
+                                <td colspan="2">{{ cpu_form.baseSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số tối đa</th>
+                                <td colspan="2">{{ cpu_form.maxSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ cache L3</th>
+                                <td colspan="2">{{ cpu_form.l3Cache }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Bộ nhớ RAM và Lưu trữ</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước RAM</th>
+                                <td colspan="2">{{ storage_form.ramSize }}</td>
+                            </tr>
+                            <tr>
+                                <th>Loại RAM và thiết kế</th>
+                                <td colspan="2">{{ storage_form.ramType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tốc độ BUS RAM</th>
+                                <td colspan="2">{{ storage_form.busRamSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hỗ trợ RAM tối đa</th>
+                                <td colspan="2">{{ storage_form.maxSize }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ thứ cấp</th>
+                                <td colspan="2">{{ storage_form.secondary }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Màn hình</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước</th>
+                                <td colspan="2">{{ screen_form.diagonal }}</td>
+                            </tr>
+                            <tr>
+                                <th>Độ phân giải</th>
+                                <td colspan="2">{{ screen_form.resolution }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số làm tươi</th>
+                                <td colspan="2">{{ screen_form.refreshRate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Cảm ứng</th>
+                                <td colspan="2">{{ screen_form.touchable }}</td>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ màn hình</th>
+                                <td>{{ screen_form.technology }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                       role="button">Thêm công nghệ màn hình</a></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Đồ họa và Âm thanh</th>
+                            </tr>
+                            <tr>
+                                <th>Bộ xử lý đồ họa</th>
+                                <td colspan="2">{{ audio_video_form.gpu }}</td>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ âm thanh</th>
+                                <td>{{ audio_video_form.soundTechnologies }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                       role="button">Thêm công nghệ âm thanh</a></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Cổng kết nối & Tính năng mở rộng</th>
+                            </tr>
+                            <tr>
+                                <th>Cổng giao tiếp</th>
+                                <td>{{ interfaces_form.interfaces }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                       role="button">Thêm cổng giao tiếp</a></td>
+                            </tr>
+                            <tr>
+                                <th>Kết nối không dây</th>
+                                <td>{{ interfaces_form.wirelessConnection }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                       role="button">Thêm kết nối không dây</a></td>
+                            </tr>
+                            <tr>
+                                <th>Webcam</th>
+                                <td colspan="2">{{ interfaces_form.webcam }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thẻ nhớ</th>
+                                <td colspan="2">{{ interfaces_form.memoryCard }}</td>
+                            </tr>
+                            <tr>
+                                <th>Đèn bàn phím</th>
+                                <td colspan="2">{{ interfaces_form.keyboardLight }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tính năng khác</th>
+                                <td>{{ interfaces_form.otherFeat }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                       role="button">Thêm tính năng</a></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Kích thước & Trọng lượng</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước <br>(Dài x Rộng x Dày)</th>
+                                <td colspan="2">{{ dimensions_form.dimensions }}</td>
+                            </tr>
+                            <tr>
+                                <th>Khối lượng</th>
+                                <td colspan="2">{{ dimensions_form.weight }} kg</td>
+                            </tr>
+                            <tr>
+                                <th>Chất liệu</th>
+                                <td colspan="2">{{ dimensions_form.material }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="3" class="bg-warning text-dark">Ảnh (tối đa 15 ảnh)</th>
+                            </tr>
+                            {{ img_form.management_form }}
+                            {% for form in img_form %}
+                                <tr>
+                                    <th>Ảnh:</th>
+                                    <td colspan="2">
+                                        {{ form.src }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            <tr>
+                                <th></th>
+                                <td colspan="2"><input type="submit" value="Lưu" class="btn btn-danger"></td>
+                            </tr>
+                        </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block jsblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+{% endblock %}

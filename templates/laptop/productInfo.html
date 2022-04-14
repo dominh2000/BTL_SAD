@@ -1,0 +1,373 @@
+{% extends 'laptop/base.html' %}
+{% load humanize %}
+{% load l10n %}
+
+{% block titleblock %}
+    <title>{{ laptop.name }} | Chi tiết sản phẩm</title>
+{% endblock %}
+
+{% block cssblock %}
+    <link href="https://fonts.googleapis.com/css?family=Cabin:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="pd-wrap">
+        <div class="container">
+            <div class="heading-section">
+                <h2>Thông tin chi tiết sản phẩm</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="slider" class="owl-carousel product-slider">
+                        {% for item in images %}
+                            <div class="item">
+                                <img src="{{ item.src.url }}"/>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div id="thumb" class="owl-carousel product-thumb">
+                        {% for item in images %}
+                            <div class="item">
+                                <img src="{{ item.src.url }}"/>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-dtl">
+                        <div class="product-info">
+                            <div class="product-name">{{ laptop.name }}</div>
+                            <div class="name">
+                                {{ laptop.manufacturer }}
+                            </div>
+                            <p></p>
+                            <div class="reviews-counter">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" checked/>
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" checked/>
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" checked/>
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2"/>
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1"/>
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                                <span>3 Đánh giá</span>
+                            </div>
+                            <div class="product-price-discount"><span>{{ laptop.price|intcomma|localize }} VNĐ</span><span
+                                    class="line-through">0</span>
+                            </div>
+                        </div>
+                        <p>{{ laptop.description }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="size">Kích cỡ</label>
+                                <select id="size" name="size" class="form-select">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="color">Màu sắc</label>
+                                <select id="color" name="color" class="form-select">
+                                    <option>Xanh dương</option>
+                                    <option>Xanh lá cây</option>
+                                    <option>Đỏ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="product-count">
+                            <label for="size">Số lượng</label>
+                            <form action="#" class="display-flex">
+                                <div class="qtyminus">-</div>
+                                <input type="text" name="quantity" value="1" class="qty">
+                                <div class="qtyplus">+</div>
+                            </form>
+                            <a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-info-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                           aria-controls="description" aria-selected="true">Mô tả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                           aria-controls="review" aria-selected="false">Đánh giá</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel"
+                         aria-labelledby="description-tab">
+                        <table class="table table-light">
+                            <tbody>
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Thông tin chung</th>
+                            </tr>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <td>{{ laptop.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà sản xuất</th>
+                                <td>{{ laptop.manufacturer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thời điểm ra mắt</th>
+                                <td>{{ laptop.releaseDate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hệ điều hành</th>
+                                <td>{{ laptop.os }}</td>
+                            </tr>
+                            <tr>
+                                <th>Phần mềm cài đặt sẵn</th>
+                                <td>{{ laptop.bundledSoftwares }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thông tin pin</th>
+                                <td>{{ laptop.batteryCapacity }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Bộ xử lý</th>
+                            </tr>
+                            <tr>
+                                <th>Tên mã CPU</th>
+                                <td>{{ laptop.cpu.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Họ CPU</th>
+                                <td>{{ laptop.cpu.family }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà sản xuất</th>
+                                <td>{{ laptop.cpu.manufacturer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số nhân</th>
+                                <td>{{ laptop.cpu.cores }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số luồng</th>
+                                <td>{{ laptop.cpu.threads }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số cơ sở</th>
+                                <td>{{ laptop.cpu.baseSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số tối đa</th>
+                                <td>{{ laptop.cpu.maxSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ cache L3</th>
+                                <td>{{ laptop.cpu.l3Cache }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Bộ nhớ RAM và Lưu trữ</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước RAM</th>
+                                <td>{{ laptop.laptopStorage.ramSize }}</td>
+                            </tr>
+                            <tr>
+                                <th>Loại RAM và thiết kế</th>
+                                <td>{{ laptop.laptopStorage.ramType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tốc độ BUS RAM</th>
+                                <td>{{ laptop.laptopStorage.busRamSpeed }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hỗ trợ RAM tối đa</th>
+                                <td>{{ laptop.laptopStorage.maxSize }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ thứ cấp</th>
+                                <td>{{ laptop.laptopStorage.secondary }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Màn hình</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước</th>
+                                <td>{{ laptop.laptopScreen.diagonal }}</td>
+                            </tr>
+                            <tr>
+                                <th>Độ phân giải</th>
+                                <td>{{ laptop.laptopScreen.resolution }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số làm tươi</th>
+                                <td>{{ laptop.laptopScreen.refreshRate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Cảm ứng</th>
+                                <td>{{ laptop.laptopScreen.touchable }}</td>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ màn hình</th>
+                                <td>
+                                    {% for item in screenTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Đồ họa và Âm thanh</th>
+                            </tr>
+                            <tr>
+                                <th>Bộ xử lý đồ họa</th>
+                                <td>{{ laptop.audioVideo.gpu }}</td>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ âm thanh</th>
+                                <td>
+                                    {% for item in soundTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Cổng kết nối & Tính năng mở rộng</th>
+                            </tr>
+                            <tr>
+                                <th>Cổng giao tiếp</th>
+                                <td>
+                                    {% for item in interfaces %}
+                                        <ul class="list-group">
+                                            <li>{{ item.interface }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Kết nối không dây</th>
+                                <td>
+                                    {% for item in wirelessTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Webcam</th>
+                                <td>{{ laptop.laptopInterfaces.webcam }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thẻ nhớ</th>
+                                <td>{{ laptop.laptopInterfaces.memoryCard }}</td>
+                            </tr>
+                            <tr>
+                                <th>Đèn bàn phím</th>
+                                <td>{{ laptop.laptopInterfaces.keyboardLight }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tính năng khác</th>
+                                <td>
+                                    {% for item in otherFeat %}
+                                        <ul class="list-group">
+                                            <li>{{ item.feature }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Kích thước & Trọng lượng</th>
+                            </tr>
+                            <tr>
+                                <th>Kích thước <br>(Dài x Rộng x Dày)</th>
+                                <td>{{ laptop.dimensions.dimensions }}</td>
+                            </tr>
+                            <tr>
+                                <th>Khối lượng</th>
+                                <td>{{ laptop.dimensions.weight }} kg</td>
+                            </tr>
+                            <tr>
+                                <th>Chất liệu</th>
+                                <td>{{ laptop.dimensions.material }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <div class="review-heading">REVIEWS</div>
+                        <p class="mb-20">There are no reviews yet.</p>
+                        <form class="review-form">
+                            <div class="form-group">
+                                <label>Your rating</label>
+                                <div class="reviews-counter">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5"/>
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4"/>
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3"/>
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2"/>
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1"/>
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Your message</label>
+                                <textarea class="form-control" rows="10"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="" class="form-control" placeholder="Name*">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="" class="form-control" placeholder="Email Id*">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="round-black-btn">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+{% endblock %}

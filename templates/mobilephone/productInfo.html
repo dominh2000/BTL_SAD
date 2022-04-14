@@ -1,0 +1,479 @@
+{% extends 'mobilephone/base.html' %}
+{% load humanize %}
+{% load l10n %}
+
+{% block titleblock %}
+    <title>{{ phone.name }} | Chi tiết sản phẩm</title>
+{% endblock %}
+
+{% block cssblock %}
+    <link href="https://fonts.googleapis.com/css?family=Cabin:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="pd-wrap">
+        <div class="container">
+            <div class="heading-section">
+                <h2>Thông tin chi tiết sản phẩm</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="slider" class="owl-carousel product-slider">
+                        {% for item in images %}
+                            <div class="item">
+                                <img src="{{ item.src.url }}"/>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div id="thumb" class="owl-carousel product-thumb">
+                        {% for item in images %}
+                            <div class="item">
+                                <img src="{{ item.src.url }}"/>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-dtl">
+                        <div class="product-info">
+                            <div class="product-name">{{ phone.name }}</div>
+                            <div class="name">
+                                {{ phone.manufacturer }}
+                            </div>
+                            <p></p>
+                            <div class="reviews-counter">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" checked/>
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" checked/>
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" checked/>
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2"/>
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1"/>
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                                <span>3 Đánh giá</span>
+                            </div>
+                            <div class="product-price-discount"><span>{{ phone.price|intcomma|localize }} VNĐ</span><span
+                                    class="line-through">0</span>
+                            </div>
+                        </div>
+                        <p>{{ phone.description }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="size">Kích cỡ</label>
+                                <select id="size" name="size" class="form-select">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="color">Màu sắc</label>
+                                <select id="color" name="color" class="form-select">
+                                    <option>Xanh dương</option>
+                                    <option>Xanh lá cây</option>
+                                    <option>Đỏ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="product-count">
+                            <label for="size">Số lượng</label>
+                            <form action="#" class="display-flex">
+                                <div class="qtyminus">-</div>
+                                <input type="text" name="quantity" value="1" class="qty">
+                                <div class="qtyplus">+</div>
+                            </form>
+                            <a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-info-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                           aria-controls="description" aria-selected="true">Mô tả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                           aria-controls="review" aria-selected="false">Đánh giá</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel"
+                         aria-labelledby="description-tab">
+                        <table class="table table-light">
+                            <tbody>
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Thông tin chung</th>
+                            </tr>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <td>{{ phone.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nhà sản xuất</th>
+                                <td>{{ phone.manufacturer }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thiết kế</th>
+                                <td>{{ phone.designType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Chất liệu</th>
+                                <td>{{ phone.material }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kích thước<br>(Dài x Ngang x Dày)</th>
+                                <td>{{ phone.dimensions}}</td>
+                            </tr>
+                            <tr>
+                                <th>Khối lượng</th>
+                                <td>{{ phone.weight }} g</td>
+                            </tr>
+                            <tr>
+                                <th>Loa</th>
+                                <td>{{ phone.speaker }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thời điểm ra mắt</th>
+                                <td>{{ phone.releaseDate }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Màn hình</th>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ màn hình</th>
+                                <td>{{ phone.phoneScreen.technology }}</td>
+                            </tr>
+                            <tr>
+                                <th>Độ phân giải</th>
+                                <td>{{ phone.phoneScreen.resolution }}</td>
+                            </tr>
+                            <tr>
+                                <th>Màn hình rộng</th>
+                                <td>{{ phone.phoneScreen.diagonal }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tần số quét</th>
+                                <td>{{ phone.phoneScreen.refreshRate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Độ sáng tối đa</th>
+                                <td>{{ phone.phoneScreen.brightness }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mặt kính cảm ứng</th>
+                                <td>{{ phone.phoneScreen.glass }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Camera sau</th>
+                            </tr>
+                            <tr>
+                                <th>Độ phân giải</th>
+                                <td>{{ phone.rearCameras.rearResolution }}</td>
+                            </tr>
+                            <tr>
+                                <th>Quay phim</th>
+                                <td>
+                                    {% for item in rearCamRecordingRes %}
+                                        <ul class="list-group">
+                                            <li>{{ item.recordResolution }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Đèn flash</th>
+                                <td>{{ phone.rearCameras.flash }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tính năng</th>
+                                <td>
+                                    {% for item in rearCamFeature %}
+                                        <ul class="list-group">
+                                            <li>{{ item.feature }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Camera trước</th>
+                            </tr>
+                            <tr>
+                                <th>Độ phân giải</th>
+                                <td>{{ phone.frontCamera.frontResolution }}</td>
+                            </tr>
+                            <tr>
+                                <th>Quay phim</th>
+                                <td>
+                                    {% for item in frontCamRecordingRes %}
+                                        <ul class="list-group">
+                                            <li>{{ item.recordResolution }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tính năng</th>
+                                <td>
+                                    {% for item in frontCamFeature %}
+                                        <ul class="list-group">
+                                            <li>{{ item.feature }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Hệ điều hành, CPU & GPU</th>
+                            </tr>
+                            <tr>
+                                <th>Hệ điều hành</th>
+                                <td>{{ phone.osCpuGpu.os }}</td>
+                            </tr>
+                            <tr>
+                                <th>CPU</th>
+                                <td>{{ phone.osCpuGpu.cpu }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tốc độ CPU</th>
+                                <td>{{ phone.osCpuGpu.cpuDescription }}</td>
+                            </tr>
+                            <tr>
+                                <th>GPU</th>
+                                <td>{{ phone.osCpuGpu.gpu }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Bộ nhớ & Lưu trữ</th>
+                            </tr>
+                            <tr>
+                                <th>RAM</th>
+                                <td>{{ phone.phoneStorage.ram }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ trong</th>
+                                <td>{{ phone.phoneStorage.internalMem }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ nhớ trong khả dùng còn lại</th>
+                                <td>{{ phone.phoneStorage.internalMemAvail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Thẻ nhớ</th>
+                                <td>{{ phone.phoneStorage.memoryCard }}</td>
+                            </tr>
+                            <tr>
+                                <th>Danh bạ</th>
+                                <td>{{ phone.phoneStorage.contacts }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Kết nối</th>
+                            </tr>
+                            <tr>
+                                <th>Mạng di động</th>
+                                <td>{{ phone.phoneConnections.cellularNetwork }}</td>
+                            </tr>
+                            <tr>
+                                <th>SIM</th>
+                                <td>{{ phone.phoneConnections.sim }}</td>
+                            </tr>
+                            <tr>
+                                <th>Wi-Fi</th>
+                                <td>
+                                    {% for item in wifiTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>GPS</th>
+                                <td>
+                                    {% for item in gpsTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Bluetooth</th>
+                                <td>
+                                    {% for item in bluetoothTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Cổng kết nối/ sạc</th>
+                                <td>{{ phone.phoneConnections.charger }}</td>
+                            </tr>
+                            <tr>
+                                <th>Jack tai nghe</th>
+                                <td>
+                                    {% for item in headphoneTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Kết nối khác</th>
+                                <td>{{ phone.phoneConnections.others }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Pin & sạc</th>
+                            </tr>
+                            <tr>
+                                <th>Dung lượng pin</th>
+                                <td>{{ phone.battery.capacity }}</td>
+                            </tr>
+                            <tr>
+                                <th>Loại pin</th>
+                                <td>{{ phone.battery.type }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hỗ trợ sạc tối đa</th>
+                                <td>{{ phone.battery.maxWattage }}</td>
+                            </tr>
+                            <tr>
+                                <th>Sạc kèm theo máy</th>
+                                <td>{{ phone.battery.providedWattage }}</td>
+                            </tr>
+                            <tr>
+                                <th>Công nghệ pin</th>
+                                <td>
+                                    {% for item in batteryTech %}
+                                        <ul class="list-group">
+                                            <li>{{ item.tech }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="col" colspan="2" class="bg-success text-white">Tính năng</th>
+                            </tr>
+                            <tr>
+                                <th>Bảo mật nâng cao</th>
+                                <td>{{ phone.utilities.advancedSecurities }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tính năng đặc biệt</th>
+                                <td>
+                                    {% for item in specialFeature %}
+                                        <ul class="list-group">
+                                            <li>{{ item.feature }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Kháng nước, bụi</th>
+                                <td>{{ phone.utilities.resistances }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ghi âm</th>
+                                <td>{{ phone.utilities.recorder }}</td>
+                            </tr>
+                            <tr>
+                                <th>Định dạng video được hỗ trợ</th>
+                                <td>
+                                    {% for item in videoFormat %}
+                                        <ul class="list-group">
+                                            <li>{{ item.format }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Định dạng âm thanh được hỗ trợ</th>
+                                <td>
+                                    {% for item in audioFormat %}
+                                        <ul class="list-group">
+                                            <li>{{ item.format }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <div class="review-heading">REVIEWS</div>
+                        <p class="mb-20">There are no reviews yet.</p>
+                        <form class="review-form">
+                            <div class="form-group">
+                                <label>Your rating</label>
+                                <div class="reviews-counter">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5"/>
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4"/>
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3"/>
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2"/>
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1"/>
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Your message</label>
+                                <textarea class="form-control" rows="10"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="" class="form-control" placeholder="Name*">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="" class="form-control" placeholder="Email Id*">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="round-black-btn">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+{% endblock %}
