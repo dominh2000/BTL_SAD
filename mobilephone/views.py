@@ -87,7 +87,7 @@ class AddPhone(View):
             connect = connect_form.save()
             battery = battery_form.save()
             util = util_form.save()
-
+            
             phone_form.instance.phoneScreen = screen
             phone_form.instance.rearCameras = rear_cam
             phone_form.instance.frontCamera = front_cam

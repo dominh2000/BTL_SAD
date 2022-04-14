@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <th>Tên mã CPU</th>
-                                <td colspan="2">{{ cpu_form.name }}</td>
+                                <td colspan="2">{{ cpu_form.cpuName }}</td>
                             </tr>
                             <tr>
                                 <th>Họ CPU</th>
@@ -153,7 +153,7 @@
                             <tr>
                                 <th>Công nghệ màn hình</th>
                                 <td>{{ screen_form.technology }}</td>
-                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_screen_tech' %}"
                                        role="button">Thêm công nghệ màn hình</a></td>
                             </tr>
 
@@ -167,7 +167,7 @@
                             <tr>
                                 <th>Công nghệ âm thanh</th>
                                 <td>{{ audio_video_form.soundTechnologies }}</td>
-                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_sound_tech' %}"
                                        role="button">Thêm công nghệ âm thanh</a></td>
                             </tr>
 
@@ -177,13 +177,13 @@
                             <tr>
                                 <th>Cổng giao tiếp</th>
                                 <td>{{ interfaces_form.interfaces }}</td>
-                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_physical_interface' %}"
                                        role="button">Thêm cổng giao tiếp</a></td>
                             </tr>
                             <tr>
                                 <th>Kết nối không dây</th>
                                 <td>{{ interfaces_form.wirelessConnection }}</td>
-                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_wireless_tech' %}"
                                        role="button">Thêm kết nối không dây</a></td>
                             </tr>
                             <tr>
@@ -201,7 +201,7 @@
                             <tr>
                                 <th>Tính năng khác</th>
                                 <td>{{ interfaces_form.otherFeat }}</td>
-                                <td><a class="btn btn-success" href="{% url 'laptop:add_laptop' %}"
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_other_feat' %}"
                                        role="button">Thêm tính năng</a></td>
                             </tr>
 

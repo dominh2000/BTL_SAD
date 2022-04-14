@@ -78,4 +78,4 @@ class LaptopStorageForm(forms.ModelForm):
 class CpuForm(forms.ModelForm):
     class Meta:
         model = Cpu
-        fields = ['name', 'family', 'cores', 'threads', 'baseSpeed', 'maxSpeed', 'l3Cache', 'manufacturer', ]
+        fields = ['cpuName', 'family', 'cores', 'threads', 'baseSpeed', 'maxSpeed', 'l3Cache', 'manufacturer', ]

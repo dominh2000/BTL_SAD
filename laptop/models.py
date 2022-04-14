@@ -83,7 +83,7 @@ class LaptopStorage(models.Model):
 
 
 class Cpu(models.Model):
-    name = models.CharField(primary_key=True, max_length=20)
+    cpuName = models.CharField(primary_key=True, max_length=20)
     family = models.CharField(max_length=10, default='')
     cores = models.IntegerField()
     threads = models.IntegerField()
@@ -93,7 +93,7 @@ class Cpu(models.Model):
     manufacturer = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.name
+        return self.cpuName
 
 
 class Laptop(models.Model):
