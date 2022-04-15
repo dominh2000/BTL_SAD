@@ -6,7 +6,7 @@ class LaptopForm(forms.ModelForm):
     class Meta:
         model = Laptop
         fields = ['name', 'batteryCapacity', 'os', 'bundledSoftwares', 'releaseDate', 'manufacturer',
-                  'description', 'price', ]
+                  'description', 'price', 'cpu', ]
 
 
 class LaptopImageForm(forms.ModelForm):

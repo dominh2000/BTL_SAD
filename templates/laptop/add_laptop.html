@@ -75,37 +75,12 @@
                                 <th scope="col" colspan="3" class="bg-warning text-dark">Bộ xử lý</th>
                             </tr>
                             <tr>
-                                <th>Tên mã CPU</th>
-                                <td colspan="2">{{ cpu_form.cpuName }}</td>
+                                <th>CPU</th>
+                                <td>{{ laptop_form.cpu }}</td>
+                                <td><a class="btn btn-success" href="{% url 'laptop:add_cpu' %}"
+                                       role="button">Thêm bộ xử lý</a></td>
                             </tr>
-                            <tr>
-                                <th>Họ CPU</th>
-                                <td colspan="2">{{ cpu_form.family }}</td>
-                            </tr>
-                            <tr>
-                                <th>Nhà sản xuất</th>
-                                <td colspan="2">{{ cpu_form.manufacturer }}</td>
-                            </tr>
-                            <tr>
-                                <th>Số nhân</th>
-                                <td colspan="2">{{ cpu_form.cores }}</td>
-                            </tr>
-                            <tr>
-                                <th>Số luồng</th>
-                                <td colspan="2">{{ cpu_form.threads }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tần số cơ sở</th>
-                                <td colspan="2">{{ cpu_form.baseSpeed }}</td>
-                            </tr>
-                            <tr>
-                                <th>Tần số tối đa</th>
-                                <td colspan="2">{{ cpu_form.maxSpeed }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bộ nhớ cache L3</th>
-                                <td colspan="2">{{ cpu_form.l3Cache }}</td>
-                            </tr>
+
 
                             <tr>
                                 <th scope="col" colspan="3" class="bg-warning text-dark">Bộ nhớ RAM và Lưu trữ</th>
