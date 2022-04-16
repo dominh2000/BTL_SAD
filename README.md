@@ -24,12 +24,15 @@ Các chức năng đã cài đặt
 Hướng dẫn sử dụng
 ---------
 
+* Đầu tiên cần cài đặt thư viện bổ sung:
+  * `pip install django-isbn-field`
+  * `pip install Pillow` (nếu có báo lỗi chưa có Pillow)
 * Run server: `python manage.py runserver`
 * Xem sách bằng cách get mã ISBN của bảng Book:
-  * Url pattern: `http://127.0.0.1:8000/book/get/<isbn>`
+  * URL pattern: `http://127.0.0.1:8000/book/get/<isbn>`
   * Các ISBN có sẵn: `9780128119051`, `9781118804674`, `9781119559917`, `9781292096858`
 * Xem điện thoại, laptop bằng cách get ID của bảng MobilePhone, Laptop
-  * Url pattern: `http://127.0.0.1:8000/mobilephone/get/<id>`, `http://127.0.0.1:8000/laptop/get/<id>`
+  * URL pattern: `http://127.0.0.1:8000/mobilephone/get/<id>`, `http://127.0.0.1:8000/laptop/get/<id>`
   * Các ID có sẵn cho điện thoại: `2`, `4`, `5`
   * Các ID có sẵn cho laptop: `1`, `2`, `3`
 
