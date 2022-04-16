@@ -40,7 +40,7 @@ Cấu trúc ứng dụng
 * Các thư mục tương ứng với từng application có cấp độ ngang bằng với thư mục project `Ex2_Re`
 * Thư mục project `Ex2_Re` gồm các thành phần chính sau:
   * `settings.py`: Cấu hình cho toàn bộ project. Một số các trường quan trọng:
-    * `INSTALLED_APPS`: Danh sách các application của project (tự tạo + có sẵn)
+    * `INSTALLED_APPS`: Danh sách các application của project (tự tạo + có sẵn của Django + gọi thêm từ GitHub...)
     * `DATABASES`: Chỉ định sử dụng CSDL gì (SQLite / MySQL / ...)
     * `STATICFILES_DIRS`: Chỉ định thư mục chứa các tài nguyên tĩnh (hiển thị chung cho các file HTML)
     * `AUTH_USER_MODEL`: Lớp Model dùng để xác thực việc đăng nhập vào Django admin
