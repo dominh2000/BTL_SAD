@@ -38,15 +38,15 @@ Cấu trúc ứng dụng
 
 * Project `Ex2_Re` được chia thành nhiều application
 * Các thư mục tương ứng với từng application có cấp độ ngang bằng với thư mục project `Ex2_Re`
-* Thư mục project `Ex2_Re` gồm các thành phần:
-  * `settings.py`: Cấu hình cho toàn bộ project. Một số các trường quan trọng
+* Thư mục project `Ex2_Re` gồm các thành phần chính sau:
+  * `settings.py`: Cấu hình cho toàn bộ project. Một số các trường quan trọng:
     * `INSTALLED_APPS`: Danh sách các application của project (tự tạo + có sẵn)
     * `DATABASES`: Chỉ định sử dụng CSDL gì (SQLite / MySQL / ...)
     * `STATICFILES_DIRS`: Chỉ định thư mục chứa các tài nguyên tĩnh (hiển thị chung cho các file HTML)
     * `AUTH_USER_MODEL`: Lớp Model dùng để xác thực việc đăng nhập vào Django admin
     * `MEDIA_ROOT` và `MEDIA_URL`: Phục vụ cho việc upload file ảnh
   * `urls.py`: Các đường dẫn ở cấp độ project - Thường là các đường dẫn dẫn đến từng application, sau đó mỗi application sẽ làm rõ ra
-* Mỗi application gần tương tự 1 package của package model trong thiết kế của thầy, đảm nhiệm 1 nhóm chức năng liên quan đến 1 loại model
+* Mỗi application gần tương tự 1 package của package model trong thiết kế của thầy, đảm nhiệm 1 nhóm chức năng liên quan đến 1 loại model:
   * `book`: Liên quan đến sách
   * `clothes`: Liên quan đến quần áo
   * `electronics`: Liên quan đến đồ điện tử
@@ -55,6 +55,9 @@ Cấu trúc ứng dụng
   * `user`: Liên quan đến người dùng
   * `core`: Đảm nhiệm việc hiển thị 1 số giao diện chính (Homepage,...)
   * ... - Các application cần được thêm vào kế tiếp gồm: `order`, `cart`,...
+* Mô hình MVT (Model-View-Template) trong Django cơ bản là giống với mô hình MVC, chỉ đổi 1 chút:
+  * `View` trong MVT là `Controller` trong MVC
+  * `Template` trong MVT là `View` trong MVC
 * Mỗi application gồm 3 thành phần tương ứng với mô hình MVT - MVC:
   * `models.py`: Model
   * `views.py`: View trong MVT - Controller trong MVC
