@@ -77,3 +77,16 @@ Cấu trúc ứng dụng
 * Một số thư mục khác cùng cấp với project:
   * `static`: Thư mục chứa các tài nguyên tĩnh (ảnh, CSS, JS, Bootstrap,...) dùng để hiển thị HTML cho project
   * `uploads`: Chứa các file ảnh upload lên
+
+Một số thông tin lặt vặt khác
+-------------
+
+* Django sử dụng cơ chế ORM (Object-Relationship Mapping), cho phép tự động ánh xạ các lớp, các trường & các quan hệ (`ForeignKey`, `OneToOne`, `ManyToMany`) thành các bảng & quan hệ tương ứng (1-n, 1-1, n-n) trong CSDL mà không phải tạo CSDL trước.
+Nói cách khác, chỉ cần tạo các lớp trong `models.py` và sau đó chạy 2 câu lệnh dưới đây là có CSDL, chứ không cần phải Generate Database trong VP như của thầy.
+* Sau khi thực hiện thay đổi với các lớp trong `models.py` (thêm lớp, thêm thuộc tính, thêm quan hệ,...), chạy 2 câu lệnh sau để thực hiện đồng bộ với CSDL:
+  * `python manage.py makemigrations`
+  * `python manage.py migrate`
+* Nếu như CSDL chưa có dữ liệu, việc sửa đổi các lớp model không gây ảnh hưởng
+* Nếu như CSDL đã có dữ liệu, một số hành động sửa đổi lớp model (thay đổi kiểu dữ liệu của thuộc tính, xóa quan hệ,...) có thể gây lỗi cho SQLite, khiến cho không thể migrate, truy cập DB hay xem bảng trogn Django admin. Lúc đó có 2 giải pháp như sau:
+  * Xóa file `db.sqlite3` (xóa toàn bộ CSDL), tiến hành migrate và nhập dữ liệu lại từ đầu.
+  * Thực hiện `fake` toàn bộ các file trong thư mục `migrations` của application, sau đó sửa các file trong đó và migrate lại. Tuy nhiên không có gì đảm bảo cách này sẽ thành công.
