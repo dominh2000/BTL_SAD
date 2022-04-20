@@ -36,6 +36,7 @@
                         <form action="{% url 'book:add_author' %}" method="post">
                             {% csrf_token %}
                             <tr>
+                                
                                 <th>Tên tác giả:</th>
                                 <td colspan="2">{{ form.name }}</td>
                             </tr>
